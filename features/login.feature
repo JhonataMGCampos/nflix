@@ -1,36 +1,28 @@
-#language: pt
+            #language: pt
 
-Funcionalidade: Login
-Para que eu possa gerenciar os filmes do Ninja Flix
-Sendo um usuário previamente cadastrado
-Posso acessar o sistema com o meu email e senha
+            Funcionalidade: Login
+            Para que eu possa gerenciar os filmes do Ninja Flix
+            Sendo um usuário previamente cadastrado
+            Posso acessar o sistema com o meu email e senha
 
 
-@login_happy
-Cenario: Acesso
-Quando  eu faço o login com "tony@stark.com" e "pwd123"
-Então devo ser autenticado
-E devo ver "Tony Stark" na área logada
+            @login_happy
+            Cenario: Acesso
+            Quando  eu faço o login com "tony@stark.com" e "pwd123"
+            Então devo ser autenticado
+            E devo ver "Tony Stark" na área logada
 
-@login_hapless
-Cenario: Senha inválida
-Quando  eu faço o login com "tony@stark.com" e "abc123"
-Então não devo ser autenticado
-E devo ver a mensagem de alerta "Usuário e/ou senha inválidos"
+            @login_hapless
+            Esquema do Cenario: Login com sucesso
+            Quando  eu faço o login com <email> e <senha>
+            Então não devo ser autenticado
+            E devo ver a mensagem de alerta <texto>
 
-Cenario: Usuário não existe
-Quando  eu faço o login com "404@yahoo.com" e "abc123"
-Então não devo ser autenticado
-E devo ver a mensagem de alerta "Usuário e/ou senha inválidos"
-
-Cenario: Email não informado
-Quando  eu faço o login com "" e "abcxpto"
-Então não devo ser autenticado
-E devo ver a mensagem de alerta "Opps. Cadê o email?"
-
-Cenario: Senha não informado
-Quando  eu faço o login com "teste@gmail.com" e "abcxpto"
-Então não devo ser autenticado
-E devo ver a mensagem de alerta "Opps. Cadê o senha?"
+            Exemplos:
+            | email            | senha    | texto                          |
+            | "tony@stark.com" | "abc123" | "Usuário e/ou senha inválidos" |
+            | "404@yahoo.com"  | "abc123" | "Usuário e/ou senha inválidos" |
+            | ""               | "abc123" | "Opps. Cadê o email?"          |
+            | "tony@stark.com" | ""       | "Opps. Cadê a senha?"          |
 
 
